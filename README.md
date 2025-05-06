@@ -6,6 +6,7 @@ Clone this repository to your ROS workspace:
 
 ```bash
 git clone https://github.com/phuc0908/car_model.git
+```
 
 ### 2. Build
 # 1. Build the workspace
