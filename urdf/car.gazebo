@@ -45,8 +45,8 @@
       <rightRearJoint>wheel1_joint</rightRearJoint> <!-- sau phải -->
 
       <!-- Các thông số kích thước: bạn nên kiểm tra giá trị thực tế -->
-      <wheelSeparation>0.12</wheelSeparation>
-      <wheelDiameter>0.1</wheelDiameter>
+      <wheelSeparation>${body_link_y_dim+wheel_link_length}</wheelSeparation>
+      <wheelDiameter>${wheel_link_radius}</wheelDiameter>
 
       <torque>1000</torque>
 
@@ -68,4 +68,36 @@
       <covariance_yaw>0.01</covariance_yaw>
     </plugin>
   </gazebo>
+  <gazebo reference="lidar_link">
+    <sensor type="ray" name="lidar_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>10</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.57</min_angle>
+            <max_angle>1.57</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.1</min>
+          <max>10.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_laser_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/scan</topicName>
+        <frameName>lidar_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
 </robot>

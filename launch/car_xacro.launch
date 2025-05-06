@@ -2,11 +2,11 @@
 
 <launch>
 
-    <arg name="world_name" value="$(find robot_model_pkg)/world/simple_race_track.world"/>
+    <!-- <arg name="world_name" value="$(find robot_model_pkg)/world/simple_race_track.world"/> -->
 
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
         <arg name="paused" value="false"/>
-        <arg name="world_name" value="$(arg world_name)"/>
+        <!-- <arg name="world_name" value="$(arg world_name)"/> -->
         <arg name="use_sim_time" value="true"/>
         <arg name="gui" value="true"/>
         <arg name="headless" value="false"/>
@@ -16,7 +16,7 @@
 
     <!-- Load robot description -->
     <param name="robot_description"
-            command="$(find xacro)/xacro '$(find robot_model_pkg)/urdf/car1.xacro'"/>
+            command="$(find xacro)/xacro '$(find robot_model_pkg)/urdf/car.xacro'"/>
 
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
     <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" 

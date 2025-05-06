@@ -23,7 +23,7 @@
 
         <inertial>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-            <mass value="488"/>
+            <mass value="500"/>
             <inertia 
                 ixx="0.014930555555555554"
                 ixy="0.0"
@@ -42,15 +42,15 @@
     </link>
 
     <!-- Wheel template -->
-    <!-- wheel_mass = 1.7011193465, Izz = 0.00850559673, Ixx = Iyy = 0.00667468664 -->
+    <!-- wheel_mass = 22, Izz = 0.00850559673, Ixx = Iyy = 0.00667468664 -->
 
     <!-- Back right wheel -->
     <joint name="wheel1_joint" type="continuous">
         <parent link="body_link"/>
         <child link="wheel1_link"/>
-        <origin xyz="-0.45 -0.35 -0.1" rpy="0.0 0.0 0.0"/>
+        <origin xyz="-0.45 -0.35 -0.12" rpy="0.0 0.0 0.0"/>
         <axis xyz="0.0 1.0 0.0"/>
-        <limit effort="1000.0" velocity="1000.0"/>
+        <limit effort="1000.0" velocity="500"/>
         <dynamics damping="1" friction="1"/>
     </joint>
 
@@ -72,7 +72,7 @@
         </collision>
         <inertial>
             <origin rpy="0 0 0" xyz="0 0 0"/>
-            <mass value="1.7011193465"/>
+            <mass value="2"/>
             <inertia ixx="0.00667468664" ixy="0.0" ixz="0.0" iyy="0.00667468664" izz="0.00850559673" iyz="0"/>
         </inertial>
     </link>
@@ -81,9 +81,9 @@
     <joint name="wheel2_joint" type="continuous">
         <parent link="body_link"/>
         <child link="wheel2_link"/>
-        <origin xyz="-0.45 0.35 -0.1" rpy="0.0 0.0 0.0"/>
+        <origin xyz="-0.45 0.35 -0.12" rpy="0.0 0.0 0.0"/>
         <axis xyz="0 1 0"/>
-        <limit effort="1000.0" velocity="1000.0"/>
+        <limit effort="1000.0" velocity="500"/>
         <dynamics damping="1" friction="1"/>
     </joint>
 
@@ -102,7 +102,7 @@
         </collision>
         <inertial>
             <origin rpy="0 0 0" xyz="0 0 0"/>
-            <mass value="1.7011193465"/>
+            <mass value="2"/>
             <inertia ixx="0.00667468664" ixy="0.0" ixz="0.0" iyy="0.00667468664" izz="0.00850559673" iyz="0"/>
         </inertial>
     </link>
@@ -111,9 +111,9 @@
     <joint name="wheel3_joint" type="continuous">
         <parent link="body_link"/>
         <child link="wheel3_link"/>
-        <origin xyz="0.45 -0.35 -0.1" rpy="0.0 0.0 0.0"/>
+        <origin xyz="0.45 -0.35 -0.12" rpy="0.0 0.0 0.0"/>
         <axis xyz="0 1 0"/>
-        <limit effort="1000.0" velocity="1000.0"/>
+        <limit effort="1000.0" velocity="500"/>
         <dynamics damping="1" friction="1"/>
     </joint>
 
@@ -132,7 +132,7 @@
         </collision>
         <inertial>
             <origin rpy="0 0 0" xyz="0 0 0"/>
-            <mass value="1.7011193465"/>
+            <mass value="2"/>
             <inertia ixx="0.00667468664" ixy="0.0" ixz="0.0" iyy="0.00667468664" izz="0.00850559673" iyz="0"/>
         </inertial>
     </link>
@@ -141,9 +141,9 @@
     <joint name="wheel4_joint" type="continuous">
         <parent link="body_link"/>
         <child link="wheel4_link"/>
-        <origin xyz="0.45 0.35 -0.1" rpy="0.0 0.0 0.0"/>
+        <origin xyz="0.45 0.35 -0.12" rpy="0.0 0.0 0.0"/>
         <axis xyz="0 1 0"/>
-        <limit effort="1000.0" velocity="1000"/>
+        <limit effort="1000.0" velocity="500"/>
         <dynamics damping="1" friction="1"/>
     </joint>
 
@@ -162,9 +162,30 @@
         </collision>
         <inertial>
             <origin rpy="0 0 0" xyz="0 0 0"/>
-            <mass value="1.7011193465"/>
+            <mass value="2"/>
             <inertia ixx="0.00667468664" ixy="0.0" ixz="0.0" iyy="0.00667468664" izz="0.00850559673" iyz="0"/>
         </inertial>
     </link>
+
+    <!-- LiDAR sensor link -->
+    <joint name="lidar_joint" type="fixed">
+        <parent link="body_link"/>
+        <child link="lidar_link"/>
+        <!-- Gắn trên nóc xe, điều chỉnh cao độ và vị trí phù hợp -->
+        <origin xyz="0 0 0.2" rpy="0 0 0"/>
+    </joint>
+
+    <link name="lidar_link">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <cylinder radius="0.05" length="0.02"/>
+        </geometry>
+        <material name="black">
+        <color rgba="0 0 0 1"/>
+        </material>
+    </visual>
+    </link>
+
 
 </robot>
