@@ -1,0 +1,39 @@
+
+
+
+
+<gazebo>
+    <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+      <updateRate>100</updateRate>
+      <robotNamespace>/</robotNamespace>
+
+      <!-- CHÚ Ý: đúng thứ tự các joint -->
+      <leftFrontJoint>wheel4_joint</leftFrontJoint> <!-- trước trái -->
+      <rightFrontJoint>wheel3_joint</rightFrontJoint> <!-- trước phải -->
+      <leftRearJoint>wheel2_joint</leftRearJoint> <!-- sau trái -->
+      <rightRearJoint>wheel1_joint</rightRearJoint> <!-- sau phải -->
+
+      <!-- Các thông số kích thước: bạn nên kiểm tra giá trị thực tế -->
+      <wheelSeparation>${body_link_y_dim + wheel_link_length}</wheelSeparation>
+      <wheelDiameter>${wheel_link_radius}</wheelDiameter>
+
+      <torque>1000</torque>
+
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+
+      <!-- Sửa khung gốc -->
+      <robotBaseFrame>body_link</robotBaseFrame>
+
+      <!-- Publish -->
+      <publishWheelTF>true</publishWheelTF>
+      <publishOdom>true</publishOdom>
+      <publishWheelJointState>true</publishWheelJointState>
+
+      <!-- Chính tả đúng: "covariance", không phải "convariance" -->
+      <covariance_x>0.0001</covariance_x>
+      <covariance_y>0.0001</covariance_y>
+      <covariance_yaw>0.01</covariance_yaw>
+    </plugin>
+  </gazebo>

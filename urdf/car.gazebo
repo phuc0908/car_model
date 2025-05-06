@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+
+<robot>
+  <!-- Vật liệu và ma sát -->
+  <gazebo reference="body_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Red</material>
+  </gazebo>
+
+  <gazebo reference="wheel1_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+
+  <gazebo reference="wheel2_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+
+  <gazebo reference="wheel3_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+
+  <gazebo reference="wheel4_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+
+  <!-- Plugin điều khiển xe -->
+  <gazebo>
+    <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+      <updateRate>100</updateRate>
+      <robotNamespace>/</robotNamespace>
+
+      <!-- CHÚ Ý: đúng thứ tự các joint -->
+      <leftFrontJoint>wheel4_joint</leftFrontJoint> <!-- trước trái -->
+      <rightFrontJoint>wheel3_joint</rightFrontJoint> <!-- trước phải -->
+      <leftRearJoint>wheel2_joint</leftRearJoint> <!-- sau trái -->
+      <rightRearJoint>wheel1_joint</rightRearJoint> <!-- sau phải -->
+
+      <!-- Các thông số kích thước: bạn nên kiểm tra giá trị thực tế -->
+      <wheelSeparation>0.12</wheelSeparation>
+      <wheelDiameter>0.1</wheelDiameter>
+
+      <torque>1000</torque>
+
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+
+      <!-- Sửa khung gốc -->
+      <robotBaseFrame>body_link</robotBaseFrame>
+
+      <!-- Publish -->
+      <publishWheelTF>true</publishWheelTF>
+      <publishOdom>true</publishOdom>
+      <publishWheelJointState>true</publishWheelJointState>
+
+      <!-- Chính tả đúng: "covariance", không phải "convariance" -->
+      <covariance_x>0.0001</covariance_x>
+      <covariance_y>0.0001</covariance_y>
+      <covariance_yaw>0.01</covariance_yaw>
+    </plugin>
+  </gazebo>
+</robot>
