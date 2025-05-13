@@ -209,5 +209,43 @@
     </link>
     <!-- End front left wheel -->
 
+    <!-- Camera link -->
+    <joint name="camera_joint" type="fixed">
+        <parent link="body_link"/>
+        <child link="camera_link"/>
+        <origin xyz="0.2 0.0 0" rpy="0.0 0.0 0.0"/>
+    </joint>
+
+    <!-- Camera link with visual -->
+    <link name="camera_link">
+        <visual>
+            <origin xyz="0.0 0.0 0.2" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <!-- Here, we use a cylinder to represent the camera visually -->
+                <cylinder radius="0.05" length="0.1"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <!-- End camera link -->
+
+    
+    <!-- Front center sensor -->
+    <link name="front_sensor_link">
+        <visual>
+            <origin xyz="0 0 0.05" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.05" length="0.1"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0 0 1 1"/>
+            </material>
+        </visual>
+    </link>
+    <joint name="front_sensor_joint" type="fixed">
+        <parent link="body_link"/>
+        <child link="front_sensor_link"/>
+        <origin xyz="0.5 0 0.1" rpy="0 0 0"/>
+    </joint>
 
 </robot>
